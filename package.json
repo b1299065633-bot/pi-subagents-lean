@@ -1,6 +1,6 @@
 {
-  "name": "@ssk_dev/pi-subagents-lean",
-  "version": "0.22.5",
+  "name": "pi-subagents-lean",
+  "version": "0.23.1",
   "type": "module",
   "description": "Lean Pi subagents extension with full features: 276 initial tokens (96.8% fewer than current upstream).",
   "license": "MIT",
@@ -10,11 +10,11 @@
   "author": "kunkun9527",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kunkun9527/pi-subagents-lean.git"
+    "url": "git+https://github.com/b1299065633-bot/pi-subagents-lean.git"
   },
-  "homepage": "https://github.com/kunkun9527/pi-subagents-lean#readme",
+  "homepage": "https://github.com/b1299065633-bot/pi-subagents-lean#readme",
   "bugs": {
-    "url": "https://github.com/kunkun9527/pi-subagents-lean/issues"
+    "url": "https://github.com/b1299065633-bot/pi-subagents-lean/issues"
   },
   "keywords": [
     "pi-package",
@@ -37,7 +37,7 @@
     "check": "npm run typecheck && npm test"
   },
   "dependencies": {
-    "@tintinweb/pi-subagents": "0.22.1"
+    "@tintinweb/pi-subagents": "0.23.1"
   },
   "peerDependencies": {
     "@earendil-works/pi-ai": ">=1.1.0",

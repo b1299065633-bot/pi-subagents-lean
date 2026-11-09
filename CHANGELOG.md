@@ -1,0 +1,21 @@
+# Changelog
+
+## [0.23.1] - 2026-11-09
+
+Re-pinned to upstream `@tintinweb/pi-subagents@0.23.1` (from 0.22.1). The facade (`index.ts`) is unchanged: it looks upstream's tools up by name (`Agent`, `get_subagent_result`, `steer_subagent`, `SubagentWorkflow`), and 0.23.x kept those names.
+
+Upstream changes that motivated the bump:
+
+- Built-in `Explore` inherits the session's model instead of the hard-coded `anthropic/claude-haiku-4-5`.
+- `get_subagent_result` and `resume` keep working after an agent record is evicted or after a reload (previously `Agent not found` about ten minutes after completion).
+- `tools:` accepts Claude Code tool names (`Read`, `Glob`, `Bash`) and bare `mcp__<server>__<tool>` entries narrow MCP tools instead of being dropped.
+- Workflow completion notifications count agents, not progress events.
+- 0.23.1: the conversation viewer renders tool calls like pi's own transcript; `get_subagent_result` resolves a finished agent by handle after a reload.
+
+Re-measured on Pi 1.5.0: lean 276 tokens, upstream 0.23.1 8,522 tokens — 8,246 saved (96.8%).
+
+Verified before release: the extension loads in an isolated pi process and registers exactly one tool (`subagent`, 276 tokens); `op=help` dispatches to upstream; a real `op=run` spawn of a `general-purpose` agent returned its result.
+
+## [0.22.5] and earlier
+
+See the upstream project, [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean).

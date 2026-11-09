@@ -1,11 +1,11 @@
-# @ssk_dev/pi-subagents-lean
+# pi-subagents-lean (upstream 0.23.1)
 
 <!-- token-benchmark:summary:start -->
-> **Token benchmark: Lean 276, upstream `@tintinweb/pi-subagents@0.22.1` 8,552 — 96.8% fewer.**
+> **Token benchmark: Lean 276, upstream `@tintinweb/pi-subagents@0.23.1` 8,522 — 96.8% fewer.**
 <!-- token-benchmark:summary:end -->
-> [See my full setup for Pi](https://github.com/kunkun9527/my-lean-pi-setup)
+> Fork of [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean), re-pinned to upstream `@tintinweb/pi-subagents` **0.23.1** and re-measured. Upstream author's full setup: [my-lean-pi-setup](https://github.com/kunkun9527/my-lean-pi-setup).
 
-[简体中文](https://github.com/kunkun9527/pi-subagents-lean/blob/main/README_zh-CN.md)
+[简体中文](README_zh-CN.md)
 
 A lightweight Pi wrapper for [`@tintinweb/pi-subagents`](https://github.com/tintinweb/pi-subagents). It preserves the full upstream subagent engine while condensing all agent operations into a single, compact tool schema.
 
@@ -16,11 +16,11 @@ With only this extension enabled, its recurring model-facing initialization cont
 
 | Variant | Tool and prompt contribution | Total |
 | --- | --- | ---: |
-| Lean `@ssk_dev/pi-subagents-lean@0.22.5` | `subagent` (276) | **276** |
-| Upstream `@tintinweb/pi-subagents@0.22.1` | `Agent` (2,575) + `SubagentWorkflow` (5,611) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,552** |
+| Lean `pi-subagents-lean@0.23.1` | `subagent` (276) | **276** |
+| Upstream `@tintinweb/pi-subagents@0.23.1` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
 
-This saves **8,276 tokens (96.8%)**.
-Measured with Pi 1.4.0 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
+This saves **8,246 tokens (96.8%)**.
+Measured with Pi 1.5.0 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
 <!-- token-benchmark:benchmark:end -->
 
 ## Core Features
@@ -35,7 +35,7 @@ This package does not strip down or rewrite the underlying engine; it only slims
 ## Installation
 
 ```bash
-pi install npm:@ssk_dev/pi-subagents-lean
+pi install git:github.com/b1299065633-bot/pi-subagents-lean
 ```
 
 Do not load this alongside another `pi-subagents` wrapper to avoid registering duplicate tools.
@@ -79,9 +79,22 @@ After installation:
 
 The upstream package includes built-in `general-purpose`, `Explore`, and `Plan` types. Your environment may load additional custom definitions.
 
+## Why 0.23.1 and not 0.22.1
+
+The upstream 0.23.x line carries fixes that matter in practice, so this fork moves off the 0.22.1 pin:
+
+* **The built-in `Explore` inherits the session's model** instead of the hard-coded `anthropic/claude-haiku-4-5`. On a session whose provider is not Anthropic, the old pin resolved `haiku` through whatever provider had a key — or failed outright.
+* **`get_subagent_result` and `resume` keep working after an agent record is evicted or after a reload.** Before, about ten minutes after an agent finished, the tool answered `Agent not found` while the completion notification still pointed at it.
+* `tools:` accepts [Claude Code tool names](https://github.com/tintinweb/pi-subagents) (`Read`, `Glob`, `Bash`) and bare `mcp__<server>__<tool>` entries now narrow MCP tools instead of being dropped.
+* Workflow completion counts agents rather than progress events, so a finished run no longer reads as running.
+
+0.23.1 additionally renders tool calls in the conversation viewer the way pi's own transcript does, and resolves a finished agent by handle after a reload.
+
+The facade itself needed no change for the bump: it looks upstream's tools up by name (`Agent`, `get_subagent_result`, `steer_subagent`, `SubagentWorkflow`), and those names are unchanged.
+
 ## Versions
 
-Upstream runtime is pinned to `@tintinweb/pi-subagents@0.22.1`, which requires Pi 1.1.0 or newer.
+Upstream runtime is pinned to `@tintinweb/pi-subagents@0.23.1`, which requires Pi 1.1.0 or newer.
 
 ## Development
 

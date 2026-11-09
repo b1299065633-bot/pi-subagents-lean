@@ -1,9 +1,9 @@
-# @ssk_dev/pi-subagents-lean
+# pi-subagents-lean（上游 0.23.1）
 
 <!-- token-benchmark:summary:start -->
-> **Token 基准：Lean 276，上游 `@tintinweb/pi-subagents@0.22.1` 8,552，减少 96.8%。**
+> **Token 基准：Lean 276，上游 `@tintinweb/pi-subagents@0.23.1` 8,522，减少 96.8%。**
 <!-- token-benchmark:summary:end -->
-> **完整配置参考：** [查看 Pi Lean Setup](https://github.com/kunkun9527/my-lean-pi-setup)
+> 基于 [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean) 的复刻，重新锁定到上游 `@tintinweb/pi-subagents` **0.23.1** 并重测。原作者完整配置参考：[my-lean-pi-setup](https://github.com/kunkun9527/my-lean-pi-setup)。
 
 [English](README.md)
 
@@ -16,11 +16,11 @@
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `@ssk_dev/pi-subagents-lean@0.22.5` | `subagent` (276) | **276** |
-| 上游 `@tintinweb/pi-subagents@0.22.1` | `Agent` (2,575) + `SubagentWorkflow` (5,611) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,552** |
+| Lean `pi-subagents-lean@0.23.1` | `subagent` (276) | **276** |
+| 上游 `@tintinweb/pi-subagents@0.23.1` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
 
-节省 **8,276 tokens（96.8%）**。
-测量环境为 Pi 1.4.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
+节约 **8,246 tokens（96.8%）**。
+测量环境为 Pi 1.5.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
 <!-- token-benchmark:benchmark:end -->
 
 ## 核心特性
@@ -35,7 +35,7 @@
 ## 安装
 
 ```bash
-pi install npm:@ssk_dev/pi-subagents-lean
+pi install git:github.com/b1299065633-bot/pi-subagents-lean
 ```
 
 请勿与其它 `pi-subagents` 包装扩展同时加载，以防重复注册工具。
@@ -79,9 +79,22 @@ subagent
 
 原版自带 `general-purpose`、`Explore` 和 `Plan` 三种预设，你的环境可能会额外加载其他自定义类型。
 
+## 为什么是 0.23.1 而不是 0.22.1
+
+上游 0.23.x 带了几个实际会咬人的修复，所以本复刻不再锁 0.22.1：
+
+* **内置 `Explore` 改为继承会话模型**，不再硬写 `anthropic/claude-haiku-4-5`。没有 Anthropic provider 的会话里，旧的那条 pin 会去找“任何有 key 的 provider”的 haiku，要么串到别家模型，要么直接失败。
+* **`get_subagent_result` 和 `resume` 在 agent 记录被驱逐或 reload 后仍可用**。以前 agent 完成后约 10 分钟，完成通知还指着它，工具却回 `Agent not found`。
+* `tools:` 支持 Claude Code 的工具名（`Read`、`Glob`、`Bash`），裸写 `mcp__<server>__<tool>` 现在能精确筛选 MCP 工具，而不是被当作未知项丢掉。
+* Workflow 完成通知按 agent 计数而不是进度事件，跑完的批次不再显示为运行中。
+
+0.23.1 另外让会话查看器按 pi transcript 的方式渲染工具调用，并支持 reload 后按 handle 找到已完成的 agent。
+
+本次升版 **facade 本身不需要改动**：它按名字取上游的 `Agent`、`get_subagent_result`、`steer_subagent`、`SubagentWorkflow` 四个工具，这四个名字在 0.23.x 没变。
+
 ## 版本说明
 
-上游运行时锁定为 `@tintinweb/pi-subagents@0.22.1`，需要 Pi 1.1.0 或更新版本。
+上游运行时锁定为 `@tintinweb/pi-subagents@0.23.1`，需要 Pi 1.1.0 或更新版本。
 
 ## 本地开发
 
