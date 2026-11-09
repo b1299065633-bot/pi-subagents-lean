@@ -1,5 +1,10 @@
 # Changelog
 
+## [Unreleased]
+
+- **`scripts/sync-upstream.mjs`** — bumps the upstream pin, re-measures both sides and rewrites `package.json` plus the numbers in both READMEs. It runs in two contexts: inside this repo (upstream installed into `node_modules`, so `--to` installs it) and inside a vendored install such as `~/.pi/agent/extensions/pi-subagents-lean` (upstream source copied into `upstream/`, so `--to` fetches into a temp directory and never touches pi's npm tree). Exposed as `npm run sync-upstream`. It never runs git.
+- zh README: 节约 → 节省, matching the English wording.
+
 ## [0.23.1] - 2026-11-09
 
 Re-pinned to upstream `@tintinweb/pi-subagents@0.23.1` (from 0.22.1). The facade (`index.ts`) is unchanged: it looks upstream's tools up by name (`Agent`, `get_subagent_result`, `steer_subagent`, `SubagentWorkflow`), and 0.23.x kept those names.

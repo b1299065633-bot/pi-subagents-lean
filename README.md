@@ -103,6 +103,17 @@ npm ci
 npm run check
 ```
 
+### Bumping the upstream
+
+When `@tintinweb/pi-subagents` releases, one script bumps the pin, re-measures both sides and updates the numbers in this README:
+
+```bash
+npm run sync-upstream                 # report only: versions, per-tool tokens, saving
+npm run sync-upstream -- --to 0.24.0  # install the new upstream, re-measure, rewrite package.json + both READMEs
+```
+
+It never runs git commands: commit, tag and release stay manual. If the script reports `lean should register exactly one subagent tool`, upstream renamed a tool — update the name lookup in `index.ts` first.
+
 ## License
 
 MIT. This project wraps the MIT-licensed [`@tintinweb/pi-subagents`](https://github.com/tintinweb/pi-subagents).

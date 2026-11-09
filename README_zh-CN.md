@@ -19,7 +19,7 @@
 | Lean `pi-subagents-lean@0.23.1` | `subagent` (276) | **276** |
 | 上游 `@tintinweb/pi-subagents@0.23.1` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
 
-节约 **8,246 tokens（96.8%）**。
+节省 **8,246 tokens（96.8%）**。
 测量环境为 Pi 1.5.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
 <!-- token-benchmark:benchmark:end -->
 
@@ -102,6 +102,17 @@ subagent
 npm ci
 npm run check
 ```
+
+### 升上游
+
+`@tintinweb/pi-subagents` 发新版时，一个脚本完成「改依赖 + 重测 + 改本文数字」：
+
+```bash
+npm run sync-upstream                 # 只核对：版本、逐工具 token、差值
+npm run sync-upstream -- --to 0.24.0  # 装新版、重测、改 package.json 与两份 README
+```
+
+它不执行任何 git 命令（提交、tag、release 仍然手动）。如果报「lean 应只注册一个 subagent 工具」，说明上游改了工具名，先改 `index.ts` 里取名字的那几行。
 
 ## 开源协议与致谢
 
