@@ -5,6 +5,19 @@
 - **`scripts/sync-upstream.mjs`** — bumps the upstream pin, re-measures both sides and rewrites `package.json` plus the numbers in both READMEs. It runs in two contexts: inside this repo (upstream installed into `node_modules`, so `--to` installs it) and inside a vendored install such as `~/.pi/agent/extensions/pi-subagents-lean` (upstream source copied into `upstream/`, so `--to` fetches into a temp directory and never touches pi's npm tree). Exposed as `npm run sync-upstream`. It never runs git.
 - zh README: 节约 → 节省, matching the English wording.
 
+## [0.23.2] - 2026-11-10
+
+Re-pinned to upstream `@tintinweb/pi-subagents@0.23.2` (from 0.23.1). The facade (`index.ts`) is unchanged: 0.23.2 touches only the conversation viewer's key handling and adds README translations, so the four upstream tool names the facade dispatches on are untouched.
+
+Upstream changes in 0.23.2:
+
+- `fix(ui)`: conversation viewer jump keys now resolve through `tui.altScreen.top/bottom` (#438), plus 170 lines of keybinding tests.
+- Added partial zh-CN / ja / ko README translations and `docs/translations.md`.
+
+Re-measured on Pi 1.5.2: lean 276 tokens, upstream 0.23.2 8,522 tokens — 8,246 saved (96.8%). Same numbers as 0.23.1, as expected: no tool definitions changed.
+
+Verified before release: `npm run check` (tsc + 14 tests, including routing against the real 0.23.2 upstream schemas) passes.
+
 ## [0.23.1] - 2026-11-09
 
 Re-pinned to upstream `@tintinweb/pi-subagents@0.23.1` (from 0.22.1). The facade (`index.ts`) is unchanged: it looks upstream's tools up by name (`Agent`, `get_subagent_result`, `steer_subagent`, `SubagentWorkflow`), and 0.23.x kept those names.

@@ -1,9 +1,9 @@
-# pi-subagents-lean（上游 0.23.1）
+# pi-subagents-lean（上游 0.23.2）
 
 <!-- token-benchmark:summary:start -->
-> **Token 基准：Lean 276，上游 `@tintinweb/pi-subagents@0.23.1` 8,522，减少 96.8%。**
+> **Token 基准：Lean 276，上游 `@tintinweb/pi-subagents@0.23.2` 8,522，减少 96.8%。**
 <!-- token-benchmark:summary:end -->
-> 基于 [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean) 的复刻，重新锁定到上游 `@tintinweb/pi-subagents` **0.23.1** 并重测。原作者完整配置参考：[my-lean-pi-setup](https://github.com/kunkun9527/my-lean-pi-setup)。
+> 基于 [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean) 的复刻，重新锁定到上游 `@tintinweb/pi-subagents` **0.23.2** 并重测。原作者完整配置参考：[my-lean-pi-setup](https://github.com/kunkun9527/my-lean-pi-setup)。
 
 [English](README.md)
 
@@ -16,11 +16,11 @@
 
 | 版本 | 工具与 Prompt 构成 | 合计 |
 | --- | --- | ---: |
-| Lean `pi-subagents-lean@0.23.1` | `subagent` (276) | **276** |
-| 上游 `@tintinweb/pi-subagents@0.23.1` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
+| Lean `pi-subagents-lean@0.23.2` | `subagent` (276) | **276** |
+| 上游 `@tintinweb/pi-subagents@0.23.2` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
 
 节省 **8,246 tokens（96.8%）**。
-测量环境为 Pi 1.5.0 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
+测量环境为 Pi 1.5.2 的独立临时进程、空白工作目录与空白配置。排除内置工具、Skills、上下文文件、会话历史、用户消息、无关扩展、运行时 UI 与 Slash Commands；计入扩展的 `before_agent_start` 注入。Token 是按 `ceil(字符数 / 4)` 计算的固定字符代理估算，并非模型 tokenizer 实际计费值。
 <!-- token-benchmark:benchmark:end -->
 
 ## 核心特性
@@ -94,7 +94,7 @@ subagent
 
 ## 版本说明
 
-上游运行时锁定为 `@tintinweb/pi-subagents@0.23.1`，需要 Pi 1.1.0 或更新版本。
+上游运行时锁定为 `@tintinweb/pi-subagents@0.23.2`，需要 Pi 1.1.0 或更新版本。
 
 ## 本地开发
 
