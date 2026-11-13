@@ -1,9 +1,9 @@
-# pi-subagents-lean (upstream 0.23.2)
+# pi-subagents-lean (upstream 0.25.0)
 
 <!-- token-benchmark:summary:start -->
-> **Token benchmark: Lean 276, upstream `@tintinweb/pi-subagents@0.23.2` 8,522 — 96.8% fewer.**
+> **Token benchmark: Lean 276, upstream `@tintinweb/pi-subagents@0.25.0` 8,522 — 96.8% fewer.**
 <!-- token-benchmark:summary:end -->
-> Fork of [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean), re-pinned to upstream `@tintinweb/pi-subagents` **0.23.2** and re-measured. Upstream author's full setup: [my-lean-pi-setup](https://github.com/kunkun9527/my-lean-pi-setup).
+> Fork of [kunkun9527/pi-subagents-lean](https://github.com/kunkun9527/pi-subagents-lean), re-pinned to upstream `@tintinweb/pi-subagents` **0.25.0** and re-measured. Upstream author's full setup: [my-lean-pi-setup](https://github.com/kunkun9527/my-lean-pi-setup).
 
 [简体中文](README_zh-CN.md)
 
@@ -16,8 +16,8 @@ With only this extension enabled, its recurring model-facing initialization cont
 
 | Variant | Tool and prompt contribution | Total |
 | --- | --- | ---: |
-| Lean `pi-subagents-lean@0.23.2` | `subagent` (276) | **276** |
-| Upstream `@tintinweb/pi-subagents@0.23.2` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
+| Lean `pi-subagents-lean@0.25.0` | `subagent` (276) | **276** |
+| Upstream `@tintinweb/pi-subagents@0.25.0` | `Agent` (2,550) + `SubagentWorkflow` (5,606) + `get_subagent_result` (183) + `steer_subagent` (183) | **8,522** |
 
 This saves **8,246 tokens (96.8%)**.
 Measured with Pi 1.5.2 in separate temporary processes with empty working directories and configuration. Built-in tools, skills, context files, session history, user messages, unrelated extensions, runtime UI, and slash commands are excluded; `before_agent_start` additions are included. Tokens are a fixed character-proxy estimate using `ceil(characters / 4)`, not provider tokenizer billing.
@@ -94,7 +94,7 @@ The facade itself needed no change for the bump: it looks upstream's tools up by
 
 ## Versions
 
-Upstream runtime is pinned to `@tintinweb/pi-subagents@0.23.2`, which requires Pi 1.1.0 or newer.
+Upstream runtime is pinned to `@tintinweb/pi-subagents@0.25.0`, which requires Pi 1.1.0 or newer.
 
 ## Development
 

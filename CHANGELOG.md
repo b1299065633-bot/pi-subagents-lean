@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.25.0] - 2026-11-13
+
+Re-pinned to upstream `@tintinweb/pi-subagents@0.25.0` (from 0.23.2). The facade (`index.ts`) is unchanged: all four upstream tool names and their schema dispatch remain compatible.
+
+Upstream changes in 0.24.0–0.25.0 include nested-agent visibility and concurrency limits, improved `/agents` settings, finished-result timestamps, and a stale schedule-lock fix. The built-in `general-purpose` agent can now delegate to nested subagents; the default depth is 2 and nested concurrency is capped at 10.
+
+Re-measured on Pi 1.5.2: lean 276 tokens, upstream 0.25.0 8,522 tokens — 8,246 saved (96.8%).
+
+Verified before release: `npm run check` (TypeScript plus 14 tests, including routing against the real 0.25.0 upstream schemas) passes.
+
 ## [Unreleased]
 
 - **`scripts/sync-upstream.mjs`** — bumps the upstream pin, re-measures both sides and rewrites `package.json` plus the numbers in both READMEs. It runs in two contexts: inside this repo (upstream installed into `node_modules`, so `--to` installs it) and inside a vendored install such as `~/.pi/agent/extensions/pi-subagents-lean` (upstream source copied into `upstream/`, so `--to` fetches into a temp directory and never touches pi's npm tree). Exposed as `npm run sync-upstream`. It never runs git.
