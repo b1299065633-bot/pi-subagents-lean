@@ -35,7 +35,7 @@ This package does not strip down or rewrite the underlying engine; it only slims
 ## Installation
 
 ```bash
-pi install git:github.com/b1299065633-bot/pi-subagents-lean
+pi install git:github.com/QUNIXNG/pi-subagents-lean
 ```
 
 Do not load this alongside another `pi-subagents` wrapper to avoid registering duplicate tools.

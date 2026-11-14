@@ -35,7 +35,7 @@
 ## 安装
 
 ```bash
-pi install git:github.com/b1299065633-bot/pi-subagents-lean
+pi install git:github.com/QUNIXNG/pi-subagents-lean
 ```
 
 请勿与其它 `pi-subagents` 包装扩展同时加载，以防重复注册工具。

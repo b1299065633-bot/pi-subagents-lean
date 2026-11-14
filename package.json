@@ -10,11 +10,11 @@
   "author": "kunkun9527",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/b1299065633-bot/pi-subagents-lean.git"
+    "url": "git+https://github.com/QUNIXNG/pi-subagents-lean.git"
   },
-  "homepage": "https://github.com/b1299065633-bot/pi-subagents-lean#readme",
+  "homepage": "https://github.com/QUNIXNG/pi-subagents-lean#readme",
   "bugs": {
-    "url": "https://github.com/b1299065633-bot/pi-subagents-lean/issues"
+    "url": "https://github.com/QUNIXNG/pi-subagents-lean/issues"
   },
   "keywords": [
     "pi-package",
